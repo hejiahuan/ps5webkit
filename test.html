@@ -112,7 +112,28 @@
       flex-wrap: wrap;
     }
 
-    /* Rescue / zFTPd Button in Top Bar */
+    .btn-header-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--accent);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-header-link:hover {
+      background: rgba(56, 189, 248, 0.25);
+      border-color: var(--accent);
+      color: #fff;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+    }
+
     .btn-rescue {
       display: inline-flex;
       align-items: center;
@@ -423,6 +444,140 @@
       font-weight: 700;
     }
 
+    /* Notice DNS Box */
+    .dns-notice-box {
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+
+    .dns-notice-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .dns-icon {
+      font-size: 24px;
+      line-height: 1;
+    }
+
+    .dns-notice-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fbbf24;
+    }
+
+    .dns-notice-text {
+      font-size: 13px;
+      color: #cbd5e1;
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    /* Tableau DNS */
+    .dns-table-wrapper {
+      overflow-x: auto;
+    }
+
+    .dns-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      text-align: left;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .dns-table th, .dns-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .dns-table th {
+      background: rgba(255, 255, 255, 0.05);
+      color: #f1f5f9;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .dns-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .dns-table td.dns-ip {
+      font-family: ui-monospace, monospace;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    /* Block Crédits */
+    .credits-box {
+      background: rgba(56, 189, 248, 0.05);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+
+    .credits-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .credits-icon {
+      font-size: 20px;
+    }
+
+    .credits-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .credits-text {
+      font-size: 13px;
+      color: #cbd5e1;
+      line-height: 1.6;
+      margin-bottom: 16px;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 12px 16px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .credits-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+    }
+
+    .credit-item {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 12px;
+    }
+
+    .credit-author {
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .credit-work {
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
     /* Footer */
     .footer {
       text-align: center;
@@ -451,7 +606,16 @@
     </div>
     
     <div class="header-actions">
-      <a href="slopkit/zftpd.html?go=1&auto=1&trigger=netcontrol&payload=1&v=lite1" class="btn-rescue">
+      <!-- Boutons WebUI & Pegasus Store (Visibles uniquement sur le menu principal) -->
+      <a href="https://nexgen999.github.io/evoX-CoreOS-WebUI/" target="_blank" id="btnWebUI" class="btn-header-link">
+        🌐 evoX-CoreOS WebUI
+      </a>
+      <a href="https://nexgen999.github.io/evoX-CoreOS-WebUI/pegasus-store_en.html" target="_blank" id="btnPegasus" class="btn-header-link">
+        🛒 evoX-CoreOS Pegasus Store
+      </a>
+
+      <!-- Bouton Rescue masqué par défaut -->
+      <a href="#" id="btnRescue" class="btn-rescue" style="display: none;">
         🛠 Rescue / zFTPd
       </a>
       
@@ -462,12 +626,12 @@
     </div>
   </header>
 
-  <!-- Auto-launch Countdown Bar -->
-  <div class="countdown-bar" id="countdownBar">
+  <!-- Auto-launch Countdown Bar (Masquée par défaut) -->
+  <div class="countdown-bar" id="countdownBar" style="display: none;">
     <div class="countdown-text">
       <span>Démarrage automatique dans</span>
       <span class="countdown-seconds" id="countdownSec">8s</span>
-      <span>vers le <strong>Mode Standard (evoX)</strong></span>
+      <span id="countdownTargetText">vers le <strong>Mode Standard (evoX)</strong></span>
     </div>
     <button type="button" class="countdown-cancel-btn" id="btnCancelCountdown">Choisir manuellement</button>
   </div>
@@ -487,7 +651,7 @@
       <div class="mode-desc">
         Accéder aux chargeurs compatibles pour les consoles PlayStation 5 sous firmwares <strong>9.xx à 12.xx</strong> (evoX, PS5 Autoloader, Payload Manager).
       </div>
-      <div class="mode-btn">Ouvrir le menu (3 options) &rarr;</div>
+      <div class="mode-btn">Ouvrir le menu &rarr;</div>
     </div>
 
     <div class="mode-card recommended" id="btnFwGroup2">
@@ -496,9 +660,9 @@
         <span class="mode-badge badge-purple">Relapse</span>
       </div>
       <div class="mode-desc">
-        Accéder aux chargeurs Relapse optimisés pour les consoles sous firmwares <strong>7.xx à 13.60</strong> (Relapse PLDMGR, Autoloader, Standard).
+        Accéder aux chargeurs Relapse optimisés pour les consoles sous firmwares <strong>7.xx à 13.60</strong> (evoX, Relapse PLDMGR, Autoloader, Standard).
       </div>
-      <div class="mode-btn">Ouvrir le menu (3 options) &rarr;</div>
+      <div class="mode-btn">Ouvrir le menu &rarr;</div>
     </div>
   </div>
 
@@ -544,10 +708,23 @@
       <div class="mode-btn">Lancer en Mode pldmgr &rarr;</div>
     </a>
 
-    <!-- TUILE 4 (FW 7x-13.60) -->
+    <!-- TUILE 1 (FW 7x-13.60) -->
+    <a href="Relapse-evox/relapse-evox.html" class="mode-card recommended fw-group-2">
+      <div class="mode-top">
+        <div class="mode-name">1. evoX Autoloader</div>
+        <span class="mode-badge badge-amber">Recommandé</span>
+      </div>
+      <div class="mode-desc">
+        Relapse Loader. Exécute l'exploit de bout en bout et injecte automatiquement le démon <strong>evoX.elf</strong> sur le port 8085 dès que elfldr est prêt.
+      </div>
+      <div class="mode-pipeline">WebKit &rarr; 7.xx &rarr; 13.60 &rarr; evox.elf</div>
+      <div class="mode-btn">Lancer Relapse evoX &rarr;</div>
+    </a>
+
+    <!-- TUILE 2 (FW 7x-13.60) -->
     <a href="Relapse-pldmgr/relapse-pldmgr.html" class="mode-card recommended fw-group-2">
       <div class="mode-top">
-        <div class="mode-name">4. Relapse PLDMGR</div>
+        <div class="mode-name">2. Relapse PLDMGR</div>
         <span class="mode-badge badge-cyan">Personnalisé</span>
       </div>
       <div class="mode-desc">
@@ -557,10 +734,10 @@
       <div class="mode-btn">Lancer Relapse pldmgr &rarr;</div>
     </a>
 
-    <!-- TUILE 5 (FW 7x-13.60) -->
+    <!-- TUILE 3 (FW 7x-13.60) -->
     <a href="Relapse-autoloader/relapse-autoloader.html" class="mode-card recommended fw-group-2">
       <div class="mode-top">
-        <div class="mode-name">5. Relapse PS5 Autoloader</div>
+        <div class="mode-name">3. Relapse PS5 Autoloader</div>
         <span class="mode-badge badge-purple">Personnalisé</span>
       </div>
       <div class="mode-desc">
@@ -570,10 +747,10 @@
       <div class="mode-btn">Lancer Relapse PS5 Autoloader &rarr;</div>
     </a>
 
-    <!-- TUILE 6 (FW 7x-13.60) -->
+    <!-- TUILE 4 (FW 7x-13.60) -->
     <a href="Relapse-Standard/relapse.html" class="mode-card recommended fw-group-2">
       <div class="mode-top">
-        <div class="mode-name">6. Relapse Standard</div>
+        <div class="mode-name">4. Relapse Standard</div>
         <span class="mode-badge badge-red">Personnalisé</span>
       </div>
       <div class="mode-desc">
@@ -601,6 +778,58 @@
         <span class="port-name">evoX</span>
         <span class="port-num">:8085</span>
       </div>
+      <div class="port-item">
+        <span class="port-name">zftpd</span>
+        <span class="port-num">:2120</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Encadré Notice DNS (Visible sur l'accueil uniquement) -->
+  <div class="dns-notice-box" id="dnsNoticeBox">
+    <div class="dns-notice-header">
+      <span class="dns-icon">⚠️</span>
+      <div class="dns-notice-title">Configuration Réseau Requise</div>
+    </div>
+    <div class="dns-notice-text">
+      Afin d'éviter toute mise à jour involontaire du système et de garantir le bon fonctionnement des redirections WebKit, veuillez paramétrer correctement le <strong>DNS Primaire</strong> dans les réglages réseau de votre PS5.
+    </div>
+    <div class="dns-table-wrapper">
+      <table class="dns-table">
+        <thead>
+          <tr>
+            <th>Paramètre</th>
+            <th>Adresse IP DNS</th>
+            <th>Utilisation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>DNS Primaire (Option 1)</td>
+            <td class="dns-ip">62.210.38.117</td>
+            <td>Blocage MAJ &amp; Redirection Guide Utilisateur</td>
+          </tr>
+          <tr>
+            <td>DNS Primaire (Option 2)</td>
+            <td class="dns-ip">45.56.67.85</td>
+            <td>Serveur DNS Alternatif</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Encadré Crédits (Masqué sur l'accueil, affiché dans les sous-menus) -->
+  <div class="credits-box" id="creditsBox" style="display: none;">
+    <div class="credits-header">
+      <span class="credits-icon">👏</span>
+      <div class="credits-title" id="creditsTitle">Remerciements &amp; Crédits Développeurs</div>
+    </div>
+    <div class="credits-text" id="creditsText">
+      <!-- Texte complet inséré en JS -->
+    </div>
+    <div class="credits-list" id="creditsList">
+      <!-- 4 tuiles insérées en JS -->
     </div>
   </div>
 
@@ -617,6 +846,56 @@
   const launchModesGrid = document.getElementById("launchModesGrid");
   const sectionTitle = document.getElementById("sectionTitle");
   const btnBackMenu = document.getElementById("btnBackMenu");
+  const btnRescue = document.getElementById("btnRescue");
+  const btnWebUI = document.getElementById("btnWebUI");
+  const btnPegasus = document.getElementById("btnPegasus");
+  const countdownBar = document.getElementById("countdownBar");
+  const dnsNoticeBox = document.getElementById("dnsNoticeBox");
+  const creditsBox = document.getElementById("creditsBox");
+  const creditsTitle = document.getElementById("creditsTitle");
+  const creditsText = document.getElementById("creditsText");
+  const creditsList = document.getElementById("creditsList");
+  
+  let countdownTimer = null;
+
+  // Données des crédits selon le groupe de Firmware
+  const creditsData = {
+    1: {
+      title: "Crédits & Remerciements (Firmware 9.x - 12.x)",
+      fullText: "Egy, Sonic, Yenyen, Zeco, Gezine, Echostretch, Ufm42, TheFloW, John Tornblom, Flatz, Idlesauce and PS5 R&D Discord.",
+      tiles: [
+        { name: "itsPLK", work: "PLDMGR & PS5 Autoloader" },
+        { name: "nexgen999", work: "evoX" },
+        { name: "seregonwar", work: "zftpd" },
+        { name: "Community", work: "All Dev & You ❤️" }
+      ]
+    },
+    2: {
+      title: "Crédits & Remerciements (Firmware 7.x - 13.60)",
+      fullText: "ntfargo, ufm42, Sonic-Iso, Jordy, Dr. Yenyen, TheFlow, SlidyBat, Flatz, cow, nhk, bollarz, Sleirsgoevy, EchoStretch, EarthOnion.",
+      tiles: [
+        { name: "itsPLK", work: "PLDMGR & PS5 Autoloader" },
+        { name: "nexgen999", work: "evoX" },
+        { name: "seregonwar", work: "zftpd" },
+        { name: "Community", work: "All Dev & You ❤️" }
+      ]
+    }
+  };
+
+  function updateCredits(group) {
+    const data = creditsData[group];
+    if (!data) return;
+
+    creditsTitle.textContent = data.title;
+    creditsText.textContent = data.fullText;
+    
+    creditsList.innerHTML = data.tiles.map(item => `
+      <div class="credit-item">
+        <div class="credit-author">${item.name}</div>
+        <div class="credit-work">${item.work}</div>
+      </div>
+    `).join('');
+  }
 
   // Navigation Logic
   function showFwGroup(group) {
@@ -624,25 +903,53 @@
     launchModesGrid.style.display = "grid";
     btnBackMenu.style.display = "inline-block";
 
-    // Show/Hide relevant tiles
+    // Masquer la notice DNS et les boutons WebUI / Pegasus du header
+    dnsNoticeBox.style.display = "none";
+    btnWebUI.style.display = "none";
+    btnPegasus.style.display = "none";
+
+    // Afficher les crédits
+    creditsBox.style.display = "block";
+    updateCredits(group);
+
+    // Afficher le bouton Rescue
+    btnRescue.style.display = "inline-flex";
+
+    if (group === 1) {
+      btnRescue.href = "slopkit/zftpd.html?go=1&auto=1&trigger=netcontrol&payload=1&v=lite1";
+      sectionTitle.textContent = "Modes de Lancement (Firmware 9.x - 12.x)";
+      
+      startCountdown("slopkit/poops.html?go=1&auto=1&trigger=netcontrol&payload=1&v=lite1", "vers le <strong>Mode Standard (evoX)</strong>");
+    } else {
+      btnRescue.href = "Relapse-zftpd/relapse-zftpd.html"; 
+      sectionTitle.textContent = "Modes de Lancement (Firmware 7.x - 13.60)";
+      
+      stopCountdown();
+    }
+
+    // Afficher/Masquer les tuiles correspondantes
     document.querySelectorAll(".fw-group-1").forEach(el => {
       el.style.display = (group === 1) ? "flex" : "none";
     });
     document.querySelectorAll(".fw-group-2").forEach(el => {
       el.style.display = (group === 2) ? "flex" : "none";
     });
-
-    if (group === 1) {
-      sectionTitle.textContent = "Modes de Lancement (Firmware 9.x - 12.x)";
-    } else {
-      sectionTitle.textContent = "Modes de Lancement (Firmware 7.x - 13.60)";
-    }
   }
 
   function resetMenu() {
+    stopCountdown();
     fwMenuGrid.style.display = "grid";
     launchModesGrid.style.display = "none";
     btnBackMenu.style.display = "none";
+    btnRescue.style.display = "none";
+    
+    // Réafficher la notice DNS et les boutons WebUI / Pegasus sur l'accueil
+    dnsNoticeBox.style.display = "block";
+    btnWebUI.style.display = "inline-flex";
+    btnPegasus.style.display = "inline-flex";
+
+    creditsBox.style.display = "none";
+
     sectionTitle.textContent = "Sélectionnez votre Firmware";
   }
 
@@ -664,37 +971,42 @@
     }
   })();
 
-  // Countdown timer for automatic standard launch
-  (function initCountdown() {
+  // Countdown Logic
+  function startCountdown(targetUrl, targetText) {
+    stopCountdown();
+    if (sessionStorage.getItem("ps5_autolaunch_disabled") === "true") return;
+
     let secondsLeft = 8;
     const secEl = document.getElementById("countdownSec");
-    const barEl = document.getElementById("countdownBar");
-    const cancelBtn = document.getElementById("btnCancelCountdown");
+    const targetTextEl = document.getElementById("countdownTargetText");
+    
+    if (targetTextEl) targetTextEl.innerHTML = targetText;
+    if (secEl) secEl.textContent = secondsLeft + "s";
+    
+    countdownBar.style.display = "flex";
 
-    if (sessionStorage.getItem("ps5_autolaunch_disabled") === "true") {
-      barEl.style.display = "none";
-      return;
-    }
-
-    const timer = setInterval(() => {
+    countdownTimer = setInterval(() => {
       secondsLeft--;
       if (secEl) secEl.textContent = secondsLeft + "s";
       if (secondsLeft <= 0) {
-        clearInterval(timer);
-        window.location.href = "slopkit/poops.html?go=1&auto=1&trigger=netcontrol&payload=1&v=lite1";
+        clearInterval(countdownTimer);
+        window.location.href = targetUrl;
       }
     }, 1000);
+  }
 
-    cancelBtn.onclick = function() {
-      clearInterval(timer);
-      sessionStorage.setItem("ps5_autolaunch_disabled", "true");
-      barEl.style.display = "none";
-    };
+  function stopCountdown() {
+    if (countdownTimer) {
+      clearInterval(countdownTimer);
+      countdownTimer = null;
+    }
+    countdownBar.style.display = "none";
+  }
 
-    // Stop timer if user interacts with menu options
-    document.getElementById("btnFwGroup1").addEventListener("click", () => clearInterval(timer));
-    document.getElementById("btnFwGroup2").addEventListener("click", () => clearInterval(timer));
-  })();
+  document.getElementById("btnCancelCountdown").onclick = function() {
+    sessionStorage.setItem("ps5_autolaunch_disabled", "true");
+    stopCountdown();
+  };
 </script>
 
 </body>
