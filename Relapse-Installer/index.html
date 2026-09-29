@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <title>PS5-Relapse &middot; Portail Multi-Modes</title>
-  <link rel="icon" type="image/png" href="evoX.W2JB.png">
+  <link rel="icon" type="image/jpg" href="itsplk.jpg">
   <style>
     :root {
       --bg-main: #030712;
@@ -157,6 +157,89 @@
       box-shadow: 0 0 8px var(--success);
     }
 
+    /* DNS Configuration Card */
+    .dns-card {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .dns-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .dns-icon {
+      font-size: 24px;
+      color: #f59e0b;
+    }
+
+    .dns-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #f59e0b;
+      letter-spacing: -0.01em;
+    }
+
+    .dns-description {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .dns-description strong {
+      color: #f8fafc;
+    }
+
+    .dns-table-container {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid var(--border-card);
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.25);
+    }
+
+    .dns-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 13px;
+    }
+
+    .dns-table th {
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-card);
+    }
+
+    .dns-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: #cbd5e1;
+    }
+
+    .dns-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .dns-ip {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
     /* Console Container */
     .console-wrapper {
       background: var(--bg-card);
@@ -219,7 +302,7 @@
   <!-- Header -->
   <header class="header">
     <div class="brand-wrap">
-      <img src="evoX.W2JB.png" alt="evoX logo" class="brand-logo" onerror="this.style.display='none'">
+      <img src="itsplk.jpg" alt="evoX logo" class="brand-logo" onerror="this.style.display='none'">
       <div>
         <div class="brand-title">
           <span>PS5-Relapse First Run Installer</span>
@@ -240,6 +323,40 @@
       </div>
     </div>
   </header>
+
+  <!-- Configuration Réseau Requise -->
+  <div class="dns-card">
+    <div class="dns-title-wrap">
+      <span class="dns-icon">⚠️</span>
+      <h2 class="dns-title">Configuration Réseau Requise</h2>
+    </div>
+    <p class="dns-description">
+      Afin d'éviter toute mise à jour involontaire du système et de garantir le bon fonctionnement des redirections WebKit, veuillez paramétrer correctement le <strong>DNS Primaire</strong> dans les réglages réseau de votre PS5.
+    </p>
+    <div class="dns-table-container">
+      <table class="dns-table">
+        <thead>
+          <tr>
+            <th>PARAMÈTRE</th>
+            <th>ADRESSE IP DNS</th>
+            <th>UTILISATION</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>DNS Primaire (Option 1)</td>
+            <td class="dns-ip">62.210.38.117</td>
+            <td>Blocage MAJ &amp; Redirection Guide Utilisateur</td>
+          </tr>
+          <tr>
+            <td>DNS Primaire (Option 2)</td>
+            <td class="dns-ip">45.56.67.85</td>
+            <td>Serveur DNS Alternatif</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
   <!-- Section Output / Console -->
   <div class="console-wrapper">
