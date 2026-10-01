@@ -8,7 +8,7 @@ const DEFAULT_KEXP = "kexp.bin";
 const DEFAULT_ELFLDR = "elfldr.elf";
 
 const SHELLCODE = {
-  size: 18912,
+  size: 18208,
   resolverCalls: [
     [0x1c, [0xe8, 0xcf, 0x00, 0x00, 0x00]],
     [0x23, [0xe8, 0x78, 0x01, 0x00, 0x00]],
