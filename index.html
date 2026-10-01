@@ -344,6 +344,12 @@
       border: 1px solid rgba(168, 85, 247, 0.3);
     }
 
+    .badge-emerald {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
     .badge-red {
       background: rgba(239, 68, 68, 0.15);
       color: #f87171;
@@ -396,6 +402,49 @@
     }
 
     .mode-card:hover .mode-btn {
+      background: var(--primary-btn-hover);
+      box-shadow: 0 0 14px rgba(2, 132, 199, 0.5);
+    }
+
+    /* Banner Card pour Installer */
+    .installer-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding: 16px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 16px;
+      backdrop-filter: blur(12px);
+      margin-bottom: 28px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      transition: all 0.25s ease;
+    }
+
+    .installer-card:hover {
+      border-color: var(--accent);
+      background: var(--bg-card-hover);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 20px var(--accent-glow);
+    }
+
+    .installer-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: var(--primary-btn);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .installer-card:hover .installer-btn {
       background: var(--primary-btn-hover);
       box-shadow: 0 0 14px rgba(2, 132, 199, 0.5);
     }
@@ -660,9 +709,29 @@
         <span class="mode-badge badge-purple">Relapse</span>
       </div>
       <div class="mode-desc">
-        Accéder aux chargeurs Relapse optimisés pour les consoles sous firmwares <strong>7.xx à 13.60</strong> (evoX, Relapse PLDMGR, Autoloader, Standard).
+        Accéder aux chargeurs Relapse optimisés pour les consoles sous firmwares <strong>7.xx à 13.60</strong> (evoX, Relapse PLDMGR, ProsperoMGR, Autoloader, Standard).
       </div>
       <div class="mode-btn">Ouvrir le menu &rarr;</div>
+    </div>
+  </div>
+
+  <!-- SECTION RELAPSE INSTALLER -->
+  <div id="relapseInstallerSection">
+    <div class="section-header-wrap">
+      <div class="section-title">Relapse Installer</div>
+    </div>
+
+    <div class="installer-card">
+      <div class="brand-wrap">
+        <img src="Relapse-Installer/itsplk.jpg" alt="itsPLK logo" class="brand-logo" onerror="this.style.display='none'">
+        <div>
+          <div class="brand-title">
+            <span>itsPLK universal installer</span>
+          </div>
+          <div class="brand-subtitle">Programme d'installation universel pour Relapse</div>
+        </div>
+      </div>
+      <a href="Relapse-Installer/index.html" class="installer-btn">Installer &rarr;</a>
     </div>
   </div>
 
@@ -735,9 +804,22 @@
     </a>
 
     <!-- TUILE 3 (FW 7x-13.60) -->
+    <a href="Relapse-ProsperoMGR/Relapse-ProsperoMGR.html" class="mode-card recommended fw-group-2">
+      <div class="mode-top">
+        <div class="mode-name">3. Relapse ProsperoMGR</div>
+        <span class="mode-badge badge-emerald">Gestionnaire</span>
+      </div>
+      <div class="mode-desc">
+        Relapse Loader. Exécute l'exploit de bout en bout et lance le gestionnaire <strong>ProsperoMGR</strong> dès l'initialisation du Kernel.
+      </div>
+      <div class="mode-pipeline">WebKit &rarr; 7.xx &rarr; 13.60 &rarr; prosperomgr</div>
+      <div class="mode-btn">Lancer Relapse ProsperoMGR &rarr;</div>
+    </a>
+
+    <!-- TUILE 4 (FW 7x-13.60) -->
     <a href="Relapse-autoloader/relapse-autoloader.html" class="mode-card recommended fw-group-2">
       <div class="mode-top">
-        <div class="mode-name">3. Relapse PS5 Autoloader</div>
+        <div class="mode-name">4. Relapse PS5 Autoloader</div>
         <span class="mode-badge badge-purple">Personnalisé</span>
       </div>
       <div class="mode-desc">
@@ -747,10 +829,10 @@
       <div class="mode-btn">Lancer Relapse PS5 Autoloader &rarr;</div>
     </a>
 
-    <!-- TUILE 4 (FW 7x-13.60) -->
+    <!-- TUILE 5 (FW 7x-13.60) -->
     <a href="Relapse-Standard/relapse.html" class="mode-card recommended fw-group-2">
       <div class="mode-top">
-        <div class="mode-name">4. Relapse Standard</div>
+        <div class="mode-name">5. Relapse Standard</div>
         <span class="mode-badge badge-red">Personnalisé</span>
       </div>
       <div class="mode-desc">
@@ -843,6 +925,7 @@
 <script>
   // Global elements
   const fwMenuGrid = document.getElementById("fwMenuGrid");
+  const relapseInstallerSection = document.getElementById("relapseInstallerSection");
   const launchModesGrid = document.getElementById("launchModesGrid");
   const sectionTitle = document.getElementById("sectionTitle");
   const btnBackMenu = document.getElementById("btnBackMenu");
@@ -900,6 +983,7 @@
   // Navigation Logic
   function showFwGroup(group) {
     fwMenuGrid.style.display = "none";
+    relapseInstallerSection.style.display = "none";
     launchModesGrid.style.display = "grid";
     btnBackMenu.style.display = "inline-block";
 
@@ -939,6 +1023,7 @@
   function resetMenu() {
     stopCountdown();
     fwMenuGrid.style.display = "grid";
+    relapseInstallerSection.style.display = "block";
     launchModesGrid.style.display = "none";
     btnBackMenu.style.display = "none";
     btnRescue.style.display = "none";
